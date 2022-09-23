@@ -15,15 +15,23 @@
 <div>제시어 : <span id="word"></span></div>
 <input type="text"/>
 <button>입력</button>
+
 <script>
+
     const number = parseInt(prompt('몇 명이 참가하나요?'), 10);
-    const realNumber = Number(number);
-    console.log(typeof realNumber);
+    alert(number);
+    const yesOrNo = confirm('맞나요?');
 
-    // alert(number);
-    // const yesOrNo = confirm('맞나요?');
-    // console.log('number', number);
+    // addEventListener: input 창에 입력할때마다 function 실행됨
+    // 태그.addEventListener('이벤트이름', 리스너함수명칭);
+    document.querySelector('input').addEventListener('input', function (event) {
+        console.log('input 글자 입력 이벤트', event.target.value);
+    })
 
+    const onClickEvent = function() {
+        console.log('button 버튼 클릭 이벤트')
+    }
+    document.querySelector('button').addEventListener('click', onClickEvent);
 </script>
 </body>
 
