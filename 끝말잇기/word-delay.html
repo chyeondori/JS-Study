@@ -18,20 +18,37 @@
 
 <script>
 
-    const number = parseInt(prompt('몇 명이 참가하나요?'), 10);
-    alert(number);
-    const yesOrNo = confirm('맞나요?');
+    const number = Number(prompt('몇 명이 참가하나요?'), 10);
+    // alert(number);
+    // const yesOrNo = confirm('맞나요?');
+    const $button = document.querySelector('button');
+    const $input = document.querySelector('input');
+    const $word = document.querySelector('#word');
+    let word; // 제시어
+    let newWord; // 새로 입력한 단어
+
+    const onClickButton = () => {
+        console.log('button 버튼 클릭 이벤트');
+        if(!word){ // 제시어가 비어있는가?
+            // 비어있음
+            word = newWord; // 입력한 단어가 제시어가 된다
+            $word.textContent = word;
+            $input.value = '';
+        } else {
+            // 비어있지 않음
+        }
+    };
+
+    const onInput = (event) => {
+        newWord = event.target.value;
+        console.log('input 글자 입력 이벤트', event.target.value);
+    }
 
     // addEventListener: input 창에 입력할때마다 function 실행됨
     // 태그.addEventListener('이벤트이름', 리스너함수명칭);
-    document.querySelector('input').addEventListener('input', function (event) {
-        console.log('input 글자 입력 이벤트', event.target.value);
-    })
+    $button.addEventListener('click', onClickButton);
+    $input.addEventListener('input', onInput);
 
-    const onClickEvent = function() {
-        console.log('button 버튼 클릭 이벤트')
-    }
-    document.querySelector('button').addEventListener('click', onClickEvent);
 </script>
 </body>
 
