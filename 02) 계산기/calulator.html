@@ -55,5 +55,63 @@
     <button id="divide">/</button>
 </div>
 
+<div class="row">
+    <button id="clear">C</button>
+    <button id="num-0">0</button>
+    <button id="calculate">=</button>
+    <button id="multiply">x</button>
+</div>
+
+<script>
+    let numOne = '';
+    let operator = '';
+    let numTwo = '';
+
+    const $operator = document.querySelector('#operator');
+    const $result = document.querySelector('#result');
+
+    // 1) event.target.textContent 사용
+    const onClickNumber = (event) => { // 함수가 함수를 리턴하는 함수 : 고차함수 (high order function)
+            if (operator) { // 연산자가 있음 (안비어있음)
+                numTwo += event.target.textContent; // 내가 클릭한 것을 글자 그대로 가져오는
+            } else { // 연산자 없음 (비어있음)
+                numOne += event.target.textContent;
+            }
+            $result.value += event.target.textContent;
+    };
+
+    document.querySelector('#num-0').addEventListener('click', onClickNumber);
+    document.querySelector('#num-1').addEventListener('click', onClickNumber);
+    document.querySelector('#num-2').addEventListener('click', onClickNumber);
+    document.querySelector('#num-3').addEventListener('click', onClickNumber);
+    document.querySelector('#num-4').addEventListener('click', onClickNumber);
+    document.querySelector('#num-5').addEventListener('click', onClickNumber);
+    document.querySelector('#num-6').addEventListener('click', onClickNumber);
+    document.querySelector('#num-7').addEventListener('click', onClickNumber);
+    document.querySelector('#num-8').addEventListener('click', onClickNumber);
+    document.querySelector('#num-9').addEventListener('click', onClickNumber);
+
+
+    // 2) 고차함수 사용
+        const onClickOperator = (op) => () => {
+        if (numOne) {
+            operator = op;
+            $operator.value = op;
+        } else {
+            alert('숫자를 먼저 입력하세요')
+        }
+    }
+
+    document.querySelector('#plus').addEventListener('click', onClickOperator('+'));
+    document.querySelector('#minus').addEventListener('click', onClickOperator('-'));
+    document.querySelector('#divide').addEventListener('click', onClickOperator('/'));
+    document.querySelector('#multiply').addEventListener('click', onClickOperator('*'));
+    document.querySelector('#calculator').addEventListener('click', onClickOperator('='));
+    document.querySelector('#clear').addEventListener('click', () => {
+    });
+
+
+</script>
 </body>
+
 </html>
